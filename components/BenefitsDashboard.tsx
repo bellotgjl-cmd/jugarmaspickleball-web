@@ -305,6 +305,14 @@ const BenefitsDashboard: React.FC<BenefitsDashboardProps> = ({ initialTab, onClo
                         <p>
                           Por eso nace <span className="text-[#38BDF8]">jugarmaspickleball</span>: una comunidad que conecta jugadores, organiza partidos y colabora con los clubes para que el pickleball crezca con sentido desde el primer día.
                         </p>
+                        <div className="flex flex-wrap gap-4 pt-8">
+                          {['Organizas', 'Se completa', 'Reservas pista', 'A JUGAR'].map((step, i) => (
+                            <div key={i} className="flex items-center gap-3">
+                              <span className="bg-[#38BDF8] text-black px-6 py-2 rounded-xl font-black text-sm md:text-base italic uppercase tracking-tighter shadow-lg shadow-[#38BDF8]/20">{step}</span>
+                              {i < 3 && <span className="text-slate-300 dark:text-white/20 font-black">→</span>}
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
 
