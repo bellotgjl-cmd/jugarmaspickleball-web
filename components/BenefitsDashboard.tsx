@@ -318,16 +318,22 @@ const BenefitsDashboard: React.FC<BenefitsDashboardProps> = ({ initialTab, onClo
                       </div>
                     </div>
 
-                    {/* Phase 3: The Pact */}
+                    {/* Phase 3: The Vision */}
                     <div className="relative pl-12 border-l-4 border-[#38BDF8] transition-colors">
                       <div className="absolute top-0 -left-[14px] w-6 h-6 rounded-full bg-[#38BDF8] border-4 border-white dark:border-black shadow-lg animate-pulse" />
-                      <h5 className="text-[#0F172A] dark:text-[#38BDF8] font-black uppercase text-xs tracking-[0.4em] mb-6 transition-colors">COMUNIDAD Y CLUBES: VOLVER A RECONOCER LO QUE FUNCIONA</h5>
+                      <h5 className="text-[#0F172A] dark:text-[#38BDF8] font-black uppercase text-xs tracking-[0.4em] mb-6 transition-colors">COMUNIDAD Y CLUBES: CRECER DESDE EL PRINCIPIO</h5>
                       <div className="space-y-6 text-slate-800 dark:text-gray-300 text-xl md:text-2xl leading-relaxed font-bold transition-colors">
                         <p>
-                          Esta comunidad ya demostró lo que genera: actividad constante y consumo real en los clubes. Recuperar lo que funciona requiere algo claro: <strong className="text-slate-900 dark:text-white transition-colors italic">que los clubes valoren a la comunidad que llena sus pistas.</strong>
+                          La experiencia nos ha enseñado algo muy valioso: <span className="text-slate-900 dark:text-white underline decoration-[#38BDF8] decoration-4 underline-offset-8 italic">cuando una comunidad se organiza bien, genera actividad constante y más vida en los clubes.</span>
                         </p>
                         <p>
-                          Cuando club y comunidad caminan juntos, el pickleball deja de ser fricción y vuelve a ser crecimiento. Hoy, con la app APP Radical más actualizada, recuperamos ese orden que Zaragoza necesita.
+                          Hoy el pickleball tiene la oportunidad de crecer desde el principio de forma más ordenada. Con un sistema ya probado y con una comunidad que conecta jugadores, organiza partidos y facilita que las pistas se llenen de forma natural.
+                        </p>
+                        <p>
+                          Cuando clubes y comunidad trabajan juntos, el pickleball crece con más estabilidad, más jugadores y más actividad.
+                        </p>
+                        <p className="bg-[#38BDF8]/5 dark:bg-white/5 p-8 rounded-3xl border border-[#38BDF8]/20 dark:border-white/5 italic shadow-sm transition-colors text-slate-900 dark:text-white">
+                          Por eso jugarmaspickleball, junto con la app Radical, pone desde el inicio las bases de un crecimiento más organizado para Zaragoza.
                         </p>
                       </div>
                     </div>
