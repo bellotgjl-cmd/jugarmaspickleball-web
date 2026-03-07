@@ -265,9 +265,11 @@ const BenefitsDashboard: React.FC<BenefitsDashboardProps> = ({ initialTab, onClo
                         <h4 className="text-slate-900 dark:text-white text-2xl md:text-3xl font-black italic uppercase mb-6 leading-none tracking-tighter transition-colors">
                           José Luis Bellot
                         </h4>
-                        <p className="text-[#0F172A] dark:text-[#38BDF8] font-black text-xs uppercase tracking-[0.3em] mb-8 block transition-colors italic">Fundador y Jugador</p>
-                        <p className="text-slate-700 dark:text-gray-400 font-bold leading-relaxed italic text-lg transition-colors">
-                          "Fundé jugarmaspickleball.es para solucionar el problema que yo mismo sufría: el caos de la organización. Hoy la tecnología por fin está a la altura de lo que Zaragoza merece."
+                        <p>
+                          "Hace 18 años creé <span className="text-slate-900 dark:text-white">jugarmaspadel</span> para ordenar la forma de organizar partidos. Aquella experiencia demostró que cuando la comunidad funciona, el deporte crece.
+                        </p>
+                        <p className="mt-4">
+                          Hoy nace <span className="text-[#38BDF8]">jugarmaspickleball</span> para aplicar todo lo aprendido y ayudar a que el pickleball en Zaragoza crezca desde el principio con más orden y más comunidad."
                         </p>
                       </div>
                     </div>
