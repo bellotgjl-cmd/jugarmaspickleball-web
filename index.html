@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugar Más Pickleball Zaragoza | Comunidad #1 de Pickleball</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Únete a la comunidad #1 de pickleball en Zaragoza. Encuentra partidos en < 5 minutos, mejora tu ranking y juega en los mejores clubes con la tecnología de APP Radical.">
+    <meta name="keywords"
+        content="Pickleball Zaragoza, APP Radical, Partidos de pickleball, Niveles pickleball, Clubes pickleball Zaragoza">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jugar Más Pickleball Zaragoza | Comunidad #1 de Pickleball">
+    <meta property="og:description" content="Organiza tus partidos de pickleball en Zaragoza de forma inteligente.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?q=80&w=1200">
+
+    <!-- JSON-LD Local SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsOrganization",
+      "name": "Jugar Más Pickleball Zaragoza",
+      "description": "Comunidad líder de pickleball amateur en Zaragoza vinculada a APP Radical.",
+      "url": "https://jugarmaspickleball.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Zaragoza",
+        "addressRegion": "Aragón",
+        "addressCountry": "ES"
+      },
+      "areaServed": "Zaragoza",
+      "foundingDate": "2006",
+      "knowsAbout": ["Pickleball amateur", "Ranking ELO", "Torneos de pickleball"]
+    }
+    </script>
+
+    <!-- Evitar errores de "process is not defined" en producción -->
+    <script>
+        window.process = { env: { API_KEY: undefined } };
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#38BDF8',
+                    },
+                    animation: {
+                        'heartbeat': 'heartbeat 2s ease-in-out infinite',
+                        'neon-glow': 'neon-glow 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        heartbeat: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '10%': { transform: 'scale(1.05)' },
+                            '20%': { transform: 'scale(1)' },
+                            '30%': { transform: 'scale(1.05)' },
+                        },
+                        'neon-glow': {
+                            '0%, 100%': { filter: 'drop-shadow(0 0 5px #38BDF880)' },
+                            '50%': { filter: 'drop-shadow(0 0 15px #38BDF8)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC;
+            color: #0F172A;
+        }
+
+        .dark body {
+            background-color: #0A0A0A;
+            color: white;
+        }
+
+        .font-heading {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #0F172A, #64748b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dark .text-gradient {
+            background: linear-gradient(to right, #38BDF8, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-marquee {
+            display: inline-flex;
+            animation: marquee 30s linear infinite;
+        }
+
+        .btn-heartbeat {
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        /* Reveal animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0, 0.55, 0.45, 1);
+        }
+
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "framer-motion": "https://esm.sh/framer-motion@^12.29.2",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0"
+  }
+}
+</script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!-- PUNTO DE ENTRADA DE LA APLICACIÓN -->
+    <script type="module" src="index.tsx"></script>
+</body>
+
+</html>
