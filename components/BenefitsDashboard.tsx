@@ -274,42 +274,37 @@ const BenefitsDashboard: React.FC<BenefitsDashboardProps> = ({ initialTab, onClo
                   </div>
 
                   <div className="lg:col-span-8 space-y-24 transition-colors">
-                    {/* Phase 1: Origin */}
-                    <div className="relative pl-12 border-l-4 border-slate-100 dark:border-white/10 transition-colors">
+                    {/* Phase 1: Evolution */}
+                    <div className="relative pl-12 border-l-4 border-[#38BDF8] transition-colors">
                       <div className="absolute top-0 -left-[14px] w-6 h-6 rounded-full bg-[#38BDF8] border-4 border-white dark:border-black shadow-lg" />
-                      <h5 className="text-[#0F172A] dark:text-[#38BDF8] font-black uppercase text-xs tracking-[0.4em] mb-6 transition-colors">EL ORIGEN Y LA COMUNIDAD</h5>
+                      <h5 className="text-[#0F172A] dark:text-[#38BDF8] font-black uppercase text-xs tracking-[0.4em] mb-6 transition-colors">UNA EXPERIENCIA QUE VUELVE A EMPEZAR</h5>
                       <div className="space-y-6 text-slate-800 dark:text-gray-300 text-xl md:text-2xl leading-relaxed font-bold transition-colors">
                         <p>
-                          Hace 18 años, organizar un partido era casi otro deporte. Mensajes, llamadas, listas interminables…
+                          Hace 18 años nació <span className="text-slate-900 dark:text-white">jugarmaspadel</span> en Zaragoza con una idea muy simple: organizar mejor a los jugadores para que jugar fuera más fácil.
                         </p>
                         <p>
-                          Ya entonces había algo claro: <span className="text-slate-900 dark:text-white underline decoration-[#38BDF8] decoration-4 underline-offset-8 italic">la organización importa, pero la comunidad es lo que lo hace posible.</span>
+                          La comunidad creció hasta 600 jugadores activos y más de 50 partidos diarios. <span className="text-[#38BDF8] italic">No fue casualidad. Fue porque el sistema funcionaba.</span>
                         </p>
                         <p>
-                          Por eso crecimos. Hasta 600 jugadores activos y más de 50 partidos diarios. No por casualidad, sino porque el sistema funcionaba y la gente quería formar parte. Una comunidad organizada que llenaba pistas y daba vida a los clubes.
+                          Hoy esa experiencia se aplica al pickleball con <span className="text-slate-900 dark:text-white underline decoration-[#38BDF8] decoration-4 underline-offset-8">jugarmaspickleball</span>.
                         </p>
                       </div>
                     </div>
 
-                    {/* Phase 2: Saturation */}
+                    {/* Phase 2: The Opportunity */}
                     <div className="relative pl-12 border-l-4 border-slate-100 dark:border-white/10 transition-colors">
                       <div className="absolute top-0 -left-[14px] w-6 h-6 rounded-full bg-slate-900 dark:bg-white/20 border-4 border-white dark:border-black shadow-lg transition-colors" />
-                      <h5 className="text-red-500 font-black uppercase text-xs tracking-[0.4em] mb-6 transition-colors">LA ETAPA DE LA SATURACIÓN</h5>
+                      <h5 className="text-[#0F172A] dark:text-[#38BDF8] font-black uppercase text-xs tracking-[0.4em] mb-6 transition-colors">LA GRAN OPORTUNIDAD DEL PICKLEBALL</h5>
                       <div className="space-y-6 text-slate-800 dark:text-gray-300 text-xl md:text-2xl leading-relaxed font-bold transition-colors">
                         <p>
-                          Llegó el boom del pickleball… y con él, la saturación. Reservas imposibles, cada club con su propia lógica y el desgaste de WhatsApp quemando a quienes sostenían la organización.
+                          El pickleball tiene una gran oportunidad: sus instalaciones son más accesibles y el deporte está creciendo con fuerza en España y en Europa.
                         </p>
                         <p className="bg-slate-50 dark:bg-white/5 p-8 rounded-3xl border border-slate-200 dark:border-white/5 italic shadow-sm transition-colors">
-                          Esa etapa nos dispersó, pero supimos esperar. Sabíamos que cuando una comunidad ha funcionado de verdad, vuelve a hacerlo si el sistema está a la altura.
+                          Si ese crecimiento se hace de forma organizada, puede ser más ordenado, más sostenible y más comunitario que el que vivió el pádel.
                         </p>
-                        <div className="flex flex-wrap gap-4 pt-4">
-                          {['Organizas', 'Se completa', 'Reservas pista', 'A JUGAR'].map((step, i) => (
-                            <div key={i} className="flex items-center gap-3">
-                              <span className="bg-[#38BDF8] text-black px-4 py-2 rounded-lg font-black text-sm italic uppercase tracking-tighter">{step}</span>
-                              {i < 3 && <span className="text-slate-300 dark:text-white/20">→</span>}
-                            </div>
-                          ))}
-                        </div>
+                        <p>
+                          Por eso nace <span className="text-[#38BDF8]">jugarmaspickleball</span>: una comunidad que conecta jugadores, organiza partidos y colabora con los clubes para que el pickleball crezca con sentido desde el primer día.
+                        </p>
                       </div>
                     </div>
 
