@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from './Logo';
 
@@ -10,9 +10,37 @@ interface BenefitsDashboardProps {
   onClose: () => void;
 }
 
+const PLAYER_BENEFITS = [
+  { title: "Independencia Total", desc: "Juega sin depender de tu grupo fijo de siempre." },
+  { title: "El Partido es Prioridad", desc: "Organizas con antelación y el sistema asegura que salga." },
+  { title: "Adiós al Caos", desc: "Gestión impecable: apuntarse, borrarse o sustituir sin drama." },
+  { title: "Condiciones Claras", desc: "Eliges club, nivel y formato antes de entrar." },
+  { title: "Menos Plantones", desc: "Sistema de compromiso que reduce bajas de última hora." },
+  { title: "Inclusión Real", desc: "Espacios seguros y activos para nuevas jugadoras." }
+];
+
+const CLUB_PLUS_POINTS = [
+  { id: "01", title: "Integración total Partido + Pista", desc: "Organizar un partido queda conectado con la reserva real del club." },
+  { id: "02", title: "Disponibilidad real de pistas", desc: "Se trabaja con información real, no con suposiciones." },
+  { id: "03", title: "Reserva directa desde el flujo", desc: "Menos pasos, menos llamadas: se cierra pista con mayor eficacia." },
+  { id: "04", title: "Aviso automático Minuto 1", desc: "La app te avisa justo cuando se abre el plazo para reservar al instante.", highlight: true },
+  { id: "05", title: "Menos partidos caídos", desc: "La probabilidad de 'no hay pista' baja drásticamente." },
+  { id: "06", title: "Reubicación inteligente Smart", desc: "Cambio a otro club con disponibilidad sin romper el partido." },
+  { id: "07", title: "Operativa limpia (No WhatsApp)", desc: "Comunicación, cambios y sustituciones centralizados sin caos." },
+  { id: "08", title: "Ocupación estable y rentable", desc: "Más reservas confirmadas y continuidad semanal en el club." },
+  { id: "09", title: "Fidelización con retorno real", desc: "Las bonificaciones se consumen en el club vía bono monedero." },
+  { id: "10", title: "Cuidado del Jugador Motor", desc: "Detectas quién genera actividad y lo conviertes en aliado." },
+  { id: "11", title: "Convivencia perfecta Mixta", desc: "Socios locales + comunidad abierta en armonía total." },
+  { id: "12", title: "Doble motor de actividad", desc: "Liga interna Radical + Partidos abiertos jugarmaspickleball." },
+  { id: "13", title: "Datos para decisiones", desc: "Trazabilidad completa de horarios, potencia y perfiles." },
+  { id: "14", title: "Reputación: 'Aquí jugar es fácil'", desc: "La experiencia fluida genera recomendación y pertenencia." },
+  { id: "15", title: "Ventaja Competitiva Local", desc: "El modelo más atractivo para el jugador amateur en Zaragoza." }
+];
+
 const BenefitsDashboard: React.FC<BenefitsDashboardProps> = ({ initialTab, onClose }) => {
   const [activeTab, setActiveTab] = useState<DashboardTab>(initialTab);
-  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
 
   useEffect(() => {
     setActiveTab(initialTab);
@@ -25,57 +53,31 @@ const BenefitsDashboard: React.FC<BenefitsDashboardProps> = ({ initialTab, onClo
     }
   }, [activeTab]);
 
-  const playerBenefits = [
-    { title: "Independencia Total", desc: "Juega sin depender de tu grupo fijo de siempre." },
-    { title: "El Partido es Prioridad", desc: "Organizas con antelación y el sistema asegura que salga." },
-    { title: "Adiós al Caos", desc: "Gestión impecable: apuntarse, borrarse o sustituir sin drama." },
-    { title: "Condiciones Claras", desc: "Eliges club, nivel y formato antes de entrar." },
-    { title: "Menos Plantones", desc: "Sistema de compromiso que reduce bajas de última hora." },
-    { title: "Inclusión Real", desc: "Espacios seguros y activos para nuevas jugadoras." }
-  ];
-
-  const clubPlusPoints = [
-    { id: "01", title: "Integración total Partido + Pista", desc: "Organizar un partido queda conectado con la reserva real del club." },
-    { id: "02", title: "Disponibilidad real de pistas", desc: "Se trabaja con información real, no con suposiciones." },
-    { id: "03", title: "Reserva directa desde el flujo", desc: "Menos pasos, menos llamadas: se cierra pista con mayor eficacia." },
-    { id: "04", title: "Aviso automático Minuto 1", desc: "La app te avisa justo cuando se abre el plazo para reservar al instante.", highlight: true },
-    { id: "05", title: "Menos partidos caídos", desc: "La probabilidad de 'no hay pista' baja drásticamente." },
-    { id: "06", title: "Reubicación inteligente Smart", desc: "Cambio a otro club con disponibilidad sin romper el partido." },
-    { id: "07", title: "Operativa limpia (No WhatsApp)", desc: "Comunicación, cambios y sustituciones centralizados sin caos." },
-    { id: "08", title: "Ocupación estable y rentable", desc: "Más reservas confirmadas y continuidad semanal en el club." },
-    { id: "09", title: "Fidelización con retorno real", desc: "Las bonificaciones se consumen en el club vía bono monedero." },
-    { id: "10", title: "Cuidado del Jugador Motor", desc: "Detectas quién genera actividad y lo conviertes en aliado." },
-    { id: "11", title: "Convivencia perfecta Mixta", desc: "Socios locales + comunidad abierta en armonía total." },
-    { id: "12", title: "Doble motor de actividad", desc: "Liga interna Radical + Partidos abiertos jugarmaspickleball." },
-    { id: "13", title: "Datos para decisiones", desc: "Trazabilidad completa de horarios, potencia y perfiles." },
-    { id: "14", title: "Reputación: 'Aquí jugar es fácil'", desc: "La experiencia fluida genera recomendación y pertenencia." },
-    { id: "15", title: "Ventaja Competitiva Local", desc: "El modelo más atractivo para el jugador amateur en Zaragoza." }
-  ];
-
   return (
     <motion.div
       ref={scrollContainerRef}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[500] flex justify-center items-start pt-12 pb-12 px-2 md:px-12 bg-slate-900/70 dark:bg-black/98 backdrop-blur-2xl overflow-y-auto transition-colors duration-500"
+      className="fixed inset-0 z-[500] flex justify-center items-start pb-12 px-0 md:px-12 bg-slate-900/70 dark:bg-black/98 backdrop-blur-2xl overflow-y-auto transition-colors duration-500"
     >
       <motion.div
         initial={{ scale: 0.95, y: 30 }}
         animate={{ scale: 1, y: 0 }}
-        className="bg-white dark:bg-[#0D0D0D] border border-slate-200 dark:border-white/10 w-full max-w-7xl rounded-[2.5rem] md:rounded-[3rem] shadow-2xl relative overflow-hidden my-auto transition-colors duration-500"
+        className="bg-white dark:bg-[#0D0D0D] border-x border-b border-slate-200 dark:border-white/10 w-full max-w-7xl rounded-b-[2.5rem] md:rounded-b-[3rem] shadow-2xl relative transition-colors duration-500"
       >
         {/* Glow Background */}
         <div className={`absolute -top-40 -left-40 w-[600px] h-[600px] blur-[150px] rounded-full pointer-events-none transition-colors duration-1000 ${activeTab === 'history' ? 'bg-[#38BDF8]/10 dark:bg-[#38BDF8]/15' : 'bg-[#38BDF8]/5 dark:bg-[#38BDF8]/5'}`} />
 
         {/* Header Section */}
-        <div className="p-6 md:p-14 border-b border-slate-100 dark:border-white/5 relative z-10 transition-colors">
+        <div className="sticky top-0 z-[100] p-6 md:p-14 bg-white/95 dark:bg-[#0D0D0D]/95 backdrop-blur-md border-b border-slate-100 dark:border-white/5 transition-colors rounded-t-[2.5rem] md:rounded-t-[3rem]">
           <div className="flex justify-between items-start mb-10">
             <div className="flex items-center gap-4">
               <Logo isDark={false} className="h-12 md:h-16" />
             </div>
             <button
               onClick={onClose}
+              aria-label="Cerrar panel de beneficios"
               className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-slate-100 dark:bg-white/5 hover:bg-[#38BDF8] hover:text-black rounded-xl md:rounded-2xl transition-all group border border-slate-200 dark:border-white/10"
             >
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M18 6 6 18M6 6l12 12" /></svg>
@@ -105,7 +107,7 @@ const BenefitsDashboard: React.FC<BenefitsDashboardProps> = ({ initialTab, onClo
             {activeTab === 'players' && (
               <motion.div key="players" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="grid grid-cols-1 lg:grid-cols-3 gap-10 md:gap-12">
                 <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
-                  {playerBenefits.map((b, i) => (
+                  {PLAYER_BENEFITS.map((b, i) => (
                     <div key={i} className="group p-10 rounded-[2.5rem] border-2 bg-slate-50 dark:bg-white/[0.03] border-slate-100 dark:border-white/5 hover:border-[#38BDF8]/40 transition-all duration-500 flex flex-col justify-between shadow-sm hover:shadow-2xl">
                       <div>
                         <span className="text-5xl md:text-6xl font-black font-heading italic block mb-8 transition-all duration-500 text-slate-300 dark:text-[#38BDF8]/40 group-hover:text-[#1E293B] dark:group-hover:text-[#38BDF8]">
@@ -214,7 +216,7 @@ const BenefitsDashboard: React.FC<BenefitsDashboardProps> = ({ initialTab, onClo
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-colors">
-                  {clubPlusPoints.map((p) => (
+                  {CLUB_PLUS_POINTS.map((p) => (
                     <div key={p.id} className={`group p-10 rounded-[2.5rem] border-2 transition-all duration-500 flex flex-col justify-between h-full ${p.highlight ? 'bg-[#38BDF8]/5 dark:bg-[#38BDF8]/10 border-[#38BDF8] scale-[1.03] shadow-2xl' : 'bg-slate-50 dark:bg-white/[0.03] border-slate-100 dark:border-white/5 hover:border-[#38BDF8]/40 shadow-sm hover:shadow-2xl'}`}>
                       <div>
                         <span className={`text-5xl md:text-6xl font-black font-heading italic block mb-8 transition-all duration-500 ${p.highlight ? 'text-[#0F172A] dark:text-[#38BDF8]' : 'text-slate-300 dark:text-[#38BDF8]/40 group-hover:text-[#1E293B] dark:group-hover:text-[#38BDF8]'}`}>{p.id}</span>

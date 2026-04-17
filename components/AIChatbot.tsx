@@ -49,7 +49,7 @@ const AIChatbot: React.FC<AIChatbotProps> = ({ isDarkMode, onNavigate }) => {
     setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
     setIsTyping(true);
 
-    const apiKey = process.env.API_KEY;
+    const apiKey = (import.meta as any).env?.VITE_API_KEY;
 
     // Fallback si no hay API Key configurada en Vercel
     if (!apiKey || apiKey === "undefined") {

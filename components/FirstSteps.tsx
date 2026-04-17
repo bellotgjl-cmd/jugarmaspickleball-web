@@ -15,8 +15,8 @@ const steps = [
   },
   {
     id: "03",
-    title: "Apúntate a un partido por nivel",
-    desc: "Busca el partido que te encaje y reserva tu plaza en segundos."
+    title: "Crea o apúntate a un partido por nivel",
+    desc: "Toma la iniciativa: organiza tu propio partido o busca el que mejor encaje con tu nivel y reserva tu plaza en segundos."
   },
   {
     id: "04",

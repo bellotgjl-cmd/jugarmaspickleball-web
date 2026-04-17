@@ -38,13 +38,13 @@ const RankingDashboard: React.FC<RankingDashboardProps> = ({ onClose, onContinue
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
-      className="fixed inset-0 z-[500] flex justify-center items-start p-4 md:p-12 bg-slate-900/60 dark:bg-black/95 backdrop-blur-xl overflow-y-auto transition-colors duration-500 cursor-pointer"
+      className="fixed inset-0 z-[500] flex justify-center items-start pb-4 md:pb-12 bg-slate-900/60 dark:bg-black/95 backdrop-blur-xl overflow-y-auto transition-colors duration-500 cursor-pointer"
     >
       <motion.div
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="bg-white dark:bg-[#0A0A0A] border border-slate-200 dark:border-white/10 w-full max-w-5xl rounded-[2.5rem] shadow-2xl relative overflow-hidden my-auto transition-colors cursor-default"
+        className="bg-white dark:bg-[#141414] border-x border-b border-slate-200 dark:border-white/10 w-full max-w-5xl rounded-b-[2.5rem] shadow-2xl relative transition-colors cursor-default"
       >
         {/* Mobile-only floating close button for better UX */}
         <button
@@ -58,7 +58,7 @@ const RankingDashboard: React.FC<RankingDashboardProps> = ({ onClose, onContinue
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#38BDF8]/5 dark:bg-[#38BDF8]/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none transition-colors" />
 
         {/* Header */}
-        <div className="p-8 md:p-12 border-b border-slate-100 dark:border-white/5 flex justify-between items-start relative z-10 transition-colors">
+        <div className="sticky top-0 z-[100] p-8 md:p-12 bg-white/95 dark:bg-[#141414]/95 backdrop-blur-md border-b border-slate-100 dark:border-white/5 flex justify-between items-start transition-colors rounded-t-[2.5rem]">
           <div>
             <span className="text-[#334155] dark:text-[#38BDF8] font-black text-[10px] md:text-xs uppercase tracking-[0.5em] mb-2 block">Sistema de Ranking Oficial</span>
             <h2 className="text-3xl md:text-5xl font-black italic tracking-tighter uppercase font-heading text-slate-900 dark:text-white transition-colors">Tabla de Niveles <span className="text-slate-300 dark:text-gray-500 transition-colors">(18 → 1)</span></h2>

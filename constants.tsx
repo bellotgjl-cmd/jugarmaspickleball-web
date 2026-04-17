@@ -2,7 +2,7 @@
 import React from 'react';
 
 export const COLORS = {
-  primary: '#38BDF8', // Amari / Neon Lime
+  primary: '#38BDF8', // Sky Blue / Electric Blue
   bg: '#0A0A0A',
   card: '#141414',
   border: '#262626'

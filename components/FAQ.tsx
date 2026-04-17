@@ -13,7 +13,7 @@ const faqs = [
       <>
         De momento, sí. Nuestro foco principal es Zaragoza porque queremos asegurar una comunidad fuerte, activa y geográficamente cercana que realmente pase del chat a las pistas.<br /><br />
         Sin embargo, ¡queremos que APP Radical siga creciendo! Si tu provincia o comunidad autónoma aún no tiene una comunidad activa y tienes ganas de liderar el movimiento en tu zona, tú puedes ser quien la cree, la promocione y la haga crecer.<br /><br />
-        Si te interesa ser el referente de APP Radical en tu ciudad, contacta a través de <a href="https://www.radicalpickleball.com" target="_blank" rel="noopener noreferrer" className="text-[#0F172A] dark:text-[#38BDF8] underline font-black">www.radicalpickleball.com</a>
+        Si te interesa ser el referente de APP Radical en tu ciudad, contacta a través de <a href="https://www.radicalpadel.com" target="_blank" rel="noopener noreferrer" className="text-[#0F172A] dark:text-[#38BDF8] underline font-black">www.radicalpadel.com</a>
       </>
     )
   },
