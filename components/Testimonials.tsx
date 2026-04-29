@@ -55,12 +55,14 @@ const Testimonials: React.FC<TestimonialsProps> = ({ isAdmin }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    setReplies(getAdminReplies());
-    setUserTestimonials(getTestimonials());
+    refreshTestimonials();
   }, []);
 
-  const refreshTestimonials = () => {
-    setUserTestimonials(getTestimonials());
+  const refreshTestimonials = async () => {
+    const fetchedTestimonials = await getTestimonials();
+    setUserTestimonials(fetchedTestimonials);
+    const fetchedReplies = await getAdminReplies();
+    setReplies(fetchedReplies);
   };
 
   const handleStatusToggle = async (id: string, currentStatus: boolean) => {
@@ -80,7 +82,8 @@ const Testimonials: React.FC<TestimonialsProps> = ({ isAdmin }) => {
     setIsSubmitting(true);
     const success = await saveAdminReply(testimonialId, replyText);
     if (success) {
-      setReplies(getAdminReplies());
+      const newReplies = await getAdminReplies();
+      setReplies(newReplies);
       setReplyingTo(null);
       setReplyText('');
     }

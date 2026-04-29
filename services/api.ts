@@ -1,4 +1,4 @@
-
+import { supabase } from '../lib/supabase';
 import { LeadData } from '../types.ts';
 
 export const saveLead = async (data: Omit<LeadData, 'id' | 'timestamp'>): Promise<{ success: boolean; message: string }> => {
@@ -46,8 +46,8 @@ export const saveContactMessage = async (data: { email: string; message: string 
 
 export const saveTestimonial = async (data: { name: string; level: string; quote: string; email?: string }): Promise<{ success: boolean; error?: string }> => {
   try {
-    // 1. Enviar notificación por email al admin
-    const res = await fetch('/api/contact', {
+    // 1. Enviar notificación por email al admin (opcional: o puedes quitar esto si el admin mirará Supabase)
+    fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -57,59 +57,106 @@ export const saveTestimonial = async (data: { name: string; level: string; quote
         level: data.level,
         type: 'testimonial'
       }),
-    });
+    }).catch(console.error);
 
-    // 2. Guardar en LocalStorage (temporal para el usuario actual)
-    const existing = JSON.parse(localStorage.getItem('jmp_user_testimonials') || '[]');
-    existing.push({
-      ...data,
-      id: Date.now().toString(),
-      avatar: `https://i.pravatar.cc/150?u=${encodeURIComponent(data.name)}`,
-      date: new Date().toISOString(),
-      approved: false
-    });
-    localStorage.setItem('jmp_user_testimonials', JSON.stringify(existing));
+    // 2. Guardar en Supabase
+    const { error } = await supabase
+      .from('testimonials')
+      .insert([
+        {
+          name: data.name,
+          email: data.email || '',
+          level: data.level,
+          quote: data.quote,
+          avatar: `https://i.pravatar.cc/150?u=${encodeURIComponent(data.name)}`,
+          approved: false
+        }
+      ]);
 
+    if (error) throw error;
     return { success: true };
   } catch (err) {
-    console.error('Error al procesar el testimonio:', err);
+    console.error('Error al guardar el testimonio en Supabase:', err);
     return { success: false, error: 'No se pudo enviar el testimonio' };
   }
 };
 
-export const getTestimonials = (): any[] => {
-  return JSON.parse(localStorage.getItem('jmp_user_testimonials') || '[]');
+export const getTestimonials = async (): Promise<any[]> => {
+  const { data, error } = await supabase
+    .from('testimonials')
+    .select('*')
+    .order('created_at', { ascending: false });
+  
+  if (error) {
+    console.error('Error obteniendo testimonios:', error);
+    return [];
+  }
+  return data || [];
 };
 
 export const updateTestimonialStatus = async (id: string, approved: boolean): Promise<{ success: boolean }> => {
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  const existing = JSON.parse(localStorage.getItem('jmp_user_testimonials') || '[]');
-  const updated = existing.map((t: any) => t.id === id ? { ...t, approved } : t);
-  localStorage.setItem('jmp_user_testimonials', JSON.stringify(updated));
+  const { error } = await supabase
+    .from('testimonials')
+    .update({ approved })
+    .match({ id });
+
+  if (error) {
+    console.error('Error actualizando testimonio:', error);
+    return { success: false };
+  }
   return { success: true };
 };
 
 export const deleteTestimonial = async (id: string): Promise<{ success: boolean }> => {
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  const existing = JSON.parse(localStorage.getItem('jmp_user_testimonials') || '[]');
-  const filtered = existing.filter((t: any) => t.id !== id);
-  localStorage.setItem('jmp_user_testimonials', JSON.stringify(filtered));
+  const { error } = await supabase
+    .from('testimonials')
+    .delete()
+    .match({ id });
+
+  if (error) {
+    console.error('Error borrando testimonio:', error);
+    return { success: false };
+  }
   return { success: true };
 };
 
 export const saveAdminReply = async (testimonialId: string, text: string): Promise<{ success: boolean }> => {
-  await new Promise((resolve) => setTimeout(resolve, 800));
-  const existingReplies = JSON.parse(localStorage.getItem('jmp_admin_replies') || '{}');
-  existingReplies[testimonialId] = {
-    text,
-    adminName: 'José Luis Bellot',
-    adminAvatar: '/jose-luis-support.webp',
-    date: new Date().toISOString()
-  };
-  localStorage.setItem('jmp_admin_replies', JSON.stringify(existingReplies));
+  const { error } = await supabase
+    .from('testimonials')
+    .update({
+      admin_reply_text: text,
+      admin_reply_name: 'José Luis Bellot',
+      admin_reply_date: new Date().toISOString()
+    })
+    .match({ id: testimonialId });
+
+  if (error) {
+    console.error('Error guardando respuesta:', error);
+    return { success: false };
+  }
   return { success: true };
 };
 
-export const getAdminReplies = (): Record<string, { text: string; adminName: string; adminAvatar: string; date: string }> => {
-  return JSON.parse(localStorage.getItem('jmp_admin_replies') || '{}');
+export const getAdminReplies = async (): Promise<Record<string, { text: string; adminName: string; adminAvatar: string; date: string }>> => {
+  const { data, error } = await supabase
+    .from('testimonials')
+    .select('id, admin_reply_text, admin_reply_name, admin_reply_date')
+    .not('admin_reply_text', 'is', null);
+
+  if (error) {
+    console.error('Error obteniendo respuestas:', error);
+    return {};
+  }
+
+  const map: Record<string, any> = {};
+  data.forEach((item) => {
+    map[item.id] = {
+      text: item.admin_reply_text,
+      adminName: item.admin_reply_name,
+      adminAvatar: '/jose-luis-support.webp',
+      date: item.admin_reply_date
+    };
+  });
+  
+  return map;
 };
