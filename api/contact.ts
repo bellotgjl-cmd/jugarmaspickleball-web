@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-// Función para procesar el envío de emails vía IONOS SMTP
+// Función para procesar el envío de emails vía Hostinger SMTP
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método no permitido' });
@@ -12,14 +12,14 @@ export default async function handler(req: any, res: any) {
     return res.status(400).json({ error: 'Email y mensaje son obligatorios' });
   }
 
-  // Configuración de transporte optimizada para IONOS en Vercel (Puerto 465 SSL)
+  // Configuración de transporte para Hostinger (Puerto 465 SSL)
   const transporter = nodemailer.createTransport({
-    host: 'smtp.ionos.es',
+    host: 'smtp.hostinger.com',
     port: 465,
     secure: true,
     auth: {
-      user: process.env.IONOS_EMAIL,
-      pass: process.env.IONOS_PASSWORD,
+      user: process.env.HOSTINGER_EMAIL,
+      pass: process.env.HOSTINGER_PASSWORD,
     },
     tls: {
       rejectUnauthorized: false
@@ -54,7 +54,7 @@ export default async function handler(req: any, res: any) {
     await transporter.verify();
 
     await transporter.sendMail({
-      from: `"Web Jugar Más Pickleball" <${process.env.IONOS_EMAIL}>`,
+      from: `"Web Jugar Más Pickleball" <${process.env.HOSTINGER_EMAIL}>`,
       to: 'info@jugarmaspickleball.es',
       replyTo: email,
       subject,
