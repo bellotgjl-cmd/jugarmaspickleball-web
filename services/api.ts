@@ -1,4 +1,3 @@
-import { supabase } from '../lib/supabase';
 import { LeadData } from '../types.ts';
 
 export const saveLead = async (data: Omit<LeadData, 'id' | 'timestamp'>): Promise<{ success: boolean; message: string }> => {
@@ -86,7 +85,7 @@ export const getTestimonials = async (): Promise<any[]> => {
     .from('testimonials')
     .select('*')
     .order('created_at', { ascending: false });
-  
+
   if (error) {
     console.error('Error obteniendo testimonios:', error);
     return [];
@@ -157,6 +156,6 @@ export const getAdminReplies = async (): Promise<Record<string, { text: string; 
       date: item.admin_reply_date
     };
   });
-  
+
   return map;
 };
